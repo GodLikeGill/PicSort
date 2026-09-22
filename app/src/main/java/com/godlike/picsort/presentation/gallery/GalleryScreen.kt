@@ -1,4 +1,4 @@
-package com.godlike.picsort.presentation
+package com.godlike.picsort.presentation.gallery
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

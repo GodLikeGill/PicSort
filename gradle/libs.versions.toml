@@ -11,6 +11,7 @@ compose-bom = "2026.08.00"
 activity-compose = "1.13.0"
 lifecycle = "2.10.0"
 uiTextGoogleFonts = "1.12.1"
+navigation-compose = "2.10.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -41,6 +42,9 @@ activity-compose = { module = "androidx.activity:activity-compose", version.ref 
 # Lifecycle
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
+
+# Navigation
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
