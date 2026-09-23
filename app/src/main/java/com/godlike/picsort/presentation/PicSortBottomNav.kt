@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectable
@@ -45,7 +46,10 @@ fun PicSortBottomNav(
     val colors = MaterialTheme.colorScheme
 
     Box(
-        modifier.fillMaxWidth()
+        modifier
+            .background(colors.surfaceContainerLow.copy(alpha = 0.90f))
+            .fillMaxWidth()
+            .navigationBarsPadding()
     ) {
         Row(
             Modifier
@@ -63,7 +67,9 @@ fun PicSortBottomNav(
         ) {
             items.forEach { item ->
                 PicSortNavItem(
-                    item = item, selected = item.route == selectedRoute, onClick = { onItemClick(item) })
+                    item = item,
+                    selected = item.route == selectedRoute,
+                    onClick = { onItemClick(item) })
             }
         }
     }
@@ -102,7 +108,11 @@ fun PicSortNavItem(
                         containerColor = colors.secondaryContainer,
                         contentColor = colors.onSecondaryContainer,
                     ) {
-                        Text(item.badgeCount.toString(), fontSize = 10.sp, fontWeight = FontWeight.SemiBold)
+                        Text(
+                            item.badgeCount.toString(),
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
                     }
                 }
             },
