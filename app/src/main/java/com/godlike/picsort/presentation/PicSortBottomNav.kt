@@ -63,7 +63,7 @@ fun PicSortBottomNav(
         ) {
             items.forEach { item ->
                 PicSortNavItem(
-                    item = item, selected = item.route == selectedRoute, onClick = {})
+                    item = item, selected = item.route == selectedRoute, onClick = { onItemClick(item) })
             }
         }
     }
