@@ -27,7 +27,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.AutoFixHigh
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.PhotoLibrary
 import androidx.compose.material.icons.rounded.Mic
 import androidx.compose.material3.Icon
@@ -60,10 +59,7 @@ val suggestedQueries = listOf(
 )
 
 data class Category(
-    val title: String,
-    val subtitle: String,
-    val imageRes: Int, // In a real app, this would be a String URL
-    val isLocked: Boolean = false
+    val title: String, val subtitle: String, val imageRes: Int, val isLocked: Boolean = false
 )
 
 val sampleCategories = listOf(
@@ -107,9 +103,7 @@ fun ExploreScreenContent(
             horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             Icon(
-                imageVector = Icons.Filled.Search,
-                contentDescription = "",
-                tint = colors.primary
+                imageVector = Icons.Filled.Search, contentDescription = "", tint = colors.primary
             )
             BasicTextField(
                 value = query,
@@ -117,8 +111,7 @@ fun ExploreScreenContent(
                 modifier = Modifier
                     .weight(1f)
                     .background(
-                        colors.surfaceContainerLow,
-                        shape = RoundedCornerShape(16.dp)
+                        colors.surfaceContainerLow, shape = RoundedCornerShape(16.dp)
                     ),
                 textStyle = TextStyle(
                     color = colors.onBackground,
@@ -137,11 +130,9 @@ fun ExploreScreenContent(
                             )
                         }
                     }
-                }
-            )
+                })
             IconButton(
-                onClick = onVoiceSearch,
-                modifier = Modifier.size(32.dp)
+                onClick = onVoiceSearch, modifier = Modifier.size(32.dp)
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Mic,
@@ -153,32 +144,33 @@ fun ExploreScreenContent(
         }
 
         Column(
-            Modifier
-                .fillMaxWidth(),
+            Modifier.fillMaxWidth(),
         ) {
             Row(
-                Modifier.fillMaxWidth()
+                Modifier
+                    .fillMaxWidth()
+                    .padding(5.dp)
             ) {
                 Text(
                     text = "SUGGESTED QUERIES",
-                    color = colors.outlineVariant,
+                    color = colors.outline,
+                    fontSize = 13.sp,
                     modifier = Modifier.weight(1f)
                 )
-                Row {
+                Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         imageVector = Icons.Filled.AutoFixHigh,
                         contentDescription = "",
-                        tint = colors.tertiary
+                        tint = colors.tertiary,
+                        modifier = Modifier.size(20.dp)
                     )
                     Text(
-                        text = "Semantic AI",
-                        color = colors.tertiary
+                        text = "Semantic AI", fontSize = 13.sp, color = colors.tertiary
                     )
                 }
             }
             LazyRow(
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(5.dp)
             ) {
                 items(suggestedQueries) { q ->
@@ -186,18 +178,20 @@ fun ExploreScreenContent(
                         modifier = Modifier
                             .clip(RoundedCornerShape(30.dp))
                             .background(color = colors.surfaceContainerLow)
-                            .padding(10.dp),
+                            .padding(horizontal = 10.dp, vertical = 5.dp),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(3.dp)
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.PhotoLibrary,
                             contentDescription = "",
-                            tint = colors.tertiary
+                            tint = colors.tertiary,
+                            modifier = Modifier.size(20.dp)
                         )
                         Text(
                             text = q,
-                            color = colors.onBackground
+                            fontSize = 12.sp,
+                            color = colors.onBackground,
                         )
                     }
                 }
@@ -210,26 +204,26 @@ fun ExploreScreenContent(
                 Modifier.fillMaxWidth()
             ) {
                 Row(
-                    Modifier.weight(1f)
+                    verticalAlignment = Alignment.Bottom, modifier = Modifier.weight(1f)
                 ) {
                     Text(
-                        text = "Categories",
+                        text = "Categories ",
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.SemiBold,
                         color = colors.onBackground
                     )
                     Text(
-                        text = "(6 Collections)",
-                        color = colors.outline
+                        text = "(6 Collections)", fontSize = 10.sp, color = colors.outline
                     )
                 }
                 Text(
-                    text = "Auto-Indexed",
-                    color = colors.onSurfaceVariant
+                    text = "Auto-Indexed", fontSize = 12.5.sp, color = colors.onSurfaceVariant
                 )
             }
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
-                verticalArrangement = Arrangement.spacedBy(10.dp),
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                verticalArrangement = Arrangement.spacedBy(15.dp),
+                horizontalArrangement = Arrangement.spacedBy(15.dp),
                 modifier = Modifier.fillMaxSize()
             ) {
                 items(sampleCategories) { category ->
@@ -246,15 +240,13 @@ fun ExploreTopAppBar() {
     val colors = MaterialTheme.colorScheme
 
     Row(
-        Modifier
-            .fillMaxWidth()
-            .padding(vertical = 5.dp),
+        Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-
-        ) {
+    ) {
         Row(
             Modifier.weight(1f),
             verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             Image(
                 painter = painterResource(R.drawable.picsort_logo),
@@ -262,16 +254,13 @@ fun ExploreTopAppBar() {
                 modifier = Modifier.size(32.dp)
             )
             Text(
-                text = "PicSort",
-                color = colors.onSurface
+                text = "PicSort", color = colors.onSurface
             )
             Text(
-                text = "/",
-                color = colors.surfaceVariant
+                text = "/", color = colors.surfaceVariant
             )
             Text(
-                text = "Gallery",
-                color = colors.onSurfaceVariant
+                text = "Gallery", color = colors.onSurfaceVariant
             )
         }
         Box(
@@ -316,8 +305,7 @@ fun CategoryCard(category: Category) {
                             Color.Transparent,
                             Color.Black.copy(alpha = 0.4f),
                             Color.Black.copy(alpha = 0.85f)
-                        ),
-                        startY = 200f // Adjust to control how far down the gradient starts
+                        ), startY = 200f // Adjust to control how far down the gradient starts
                     )
                 )
         )
@@ -345,9 +333,7 @@ fun CategoryCard(category: Category) {
             }
             Spacer(modifier = Modifier.height(2.dp))
             Text(
-                text = category.subtitle,
-                color = Color.LightGray,
-                fontSize = 12.sp
+                text = category.subtitle, color = Color.LightGray, fontSize = 12.sp
             )
         }
     }

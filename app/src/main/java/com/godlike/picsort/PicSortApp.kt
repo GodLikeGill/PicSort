@@ -47,8 +47,7 @@ fun PicSortApp() {
     )
 
     Scaffold(
-        containerColor = MaterialTheme.colorScheme.background,
-        bottomBar = {
+        containerColor = MaterialTheme.colorScheme.background, bottomBar = {
             PicSortBottomNav(
                 items = items,
                 selectedRoute = items.firstOrNull { item -> currentDestination?.hierarchy?.any { it.route == item.route } == true }?.route,
@@ -63,8 +62,7 @@ fun PicSortApp() {
                     }
                 },
             )
-        }
-    ) { innerPadding ->
+        }) { innerPadding ->
         NavHost(
             navController = navController,
             startDestination = Routes.GALLERY,
